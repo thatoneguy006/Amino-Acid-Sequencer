@@ -2,6 +2,8 @@
 from collections import Counter
 import matplotlib.pyplot as plt
 
+new_list = []
+
 def create_h_bar_chart():
     plt.style.use('seaborn-v0_8-bright')
     plt.barh(aa_list, aa_counts, height=0.5)
@@ -29,6 +31,14 @@ def create_pie_chart():
     plt.tight_layout()
     plt.show()
 
+def analyze_sequence(codon_sequence):
+    for value in amino_acid_present:
+        for sublist in AMINO:
+            for element in sublist:
+                if element == value:
+                    new_list.append(sublist[0])
+                    break
+    return '-'.join(new_list)
 
 AMINO = [['Phe', 'UUU', 'UUC'], ['Leu', 'UUA', 'UUG', 'CUU', 'CUC', 'CUA', 'CUG'], ['Ile', 'AUU', 'AUC', 'AUA'],
          ['Met', 'AUG'], ['Val', 'GUU', 'GUC', 'GUA', 'GUG'], ['Ser', 'UCU', 'UCC', 'UCA', 'UCG', 'AGU', 'AGC'],
@@ -77,17 +87,6 @@ while True:
     else:
         print("Your codon sequence represents 1 peptide!")
 
-    new_list = []
-
-
-    def analyze_sequence(string):
-        for value in amino_acid_present:
-            for sublist in AMINO:
-                for element in sublist:
-                    if element == value:
-                        new_list.append(sublist[0])
-        return '-'.join(new_list)
-
 
     print()
 
@@ -101,7 +100,6 @@ while True:
     for key, value in aa_dict.items():
         aa_list.append(key)
         aa_counts.append(value)
-
 
 
     while True:
