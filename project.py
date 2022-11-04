@@ -2,7 +2,35 @@
 from collections import Counter
 import matplotlib.pyplot as plt
 
-amino = [['Phe', 'UUU', 'UUC'], ['Leu', 'UUA', 'UUG', 'CUU', 'CUC', 'CUA', 'CUG'], ['Ile', 'AUU', 'AUC', 'AUA'],
+def create_h_bar_chart():
+    plt.style.use('seaborn-v0_8-bright')
+    plt.barh(aa_list, aa_counts, height=0.5)
+    plt.title('Amino Acid Composition')
+    plt.xlabel('Counts')
+    plt.ylabel('Amino Acids')
+    plt.tight_layout()
+    plt.show()
+
+
+def create_bar_chart():
+    plt.style.use('seaborn-v0_8-bright')
+    plt.bar(aa_list, aa_counts, width=0.5)
+    plt.title('Amino Acid Composition')
+    plt.xlabel('Amino Acids')
+    plt.ylabel('Counts')
+    plt.tight_layout()
+    plt.show()
+
+
+def create_pie_chart():
+    plt.style.use('seaborn-v0_8-bright')
+    plt.pie(aa_counts, labels=aa_list, wedgeprops={'edgecolor': 'black'}, autopct='%1.1f%%')
+    plt.title('Amino Acid Composition')
+    plt.tight_layout()
+    plt.show()
+
+
+AMINO = [['Phe', 'UUU', 'UUC'], ['Leu', 'UUA', 'UUG', 'CUU', 'CUC', 'CUA', 'CUG'], ['Ile', 'AUU', 'AUC', 'AUA'],
          ['Met', 'AUG'], ['Val', 'GUU', 'GUC', 'GUA', 'GUG'], ['Ser', 'UCU', 'UCC', 'UCA', 'UCG', 'AGU', 'AGC'],
          ['Pro', 'CCU', 'CCC', 'CCA', 'CCG'], ['Thr', 'ACU', 'ACC', 'ACA', 'ACG'],
          ['Ala', 'GCU', 'GCC', 'GCA', 'GCG'],
@@ -54,7 +82,7 @@ while True:
 
     def analyze_sequence(string):
         for value in amino_acid_present:
-            for sublist in amino:
+            for sublist in AMINO:
                 for element in sublist:
                     if element == value:
                         new_list.append(sublist[0])
@@ -74,33 +102,6 @@ while True:
         aa_list.append(key)
         aa_counts.append(value)
 
-
-    def create_h_bar_chart():
-        plt.style.use('seaborn-v0_8-bright')
-        plt.barh(aa_list, aa_counts, height=0.5)
-        plt.title('Amino Acid Composition')
-        plt.xlabel('Counts')
-        plt.ylabel('Amino Acids')
-        plt.tight_layout()
-        plt.show()
-
-
-    def create_bar_chart():
-        plt.style.use('seaborn-v0_8-bright')
-        plt.bar(aa_list, aa_counts, width=0.5)
-        plt.title('Amino Acid Composition')
-        plt.xlabel('Amino Acids')
-        plt.ylabel('Counts')
-        plt.tight_layout()
-        plt.show()
-
-
-    def create_pie_chart():
-        plt.style.use('seaborn-v0_8-bright')
-        plt.pie(aa_counts, labels=aa_list, wedgeprops={'edgecolor': 'black'}, autopct='%1.1f%%')
-        plt.title('Amino Acid Composition')
-        plt.tight_layout()
-        plt.show()
 
 
     while True:
